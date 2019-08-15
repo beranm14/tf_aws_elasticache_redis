@@ -70,6 +70,7 @@ variable "redis_parameters" {
     name  = string
     value = string
   }))
+  default = []
 }
 
 variable "redis_maintenance_window" {

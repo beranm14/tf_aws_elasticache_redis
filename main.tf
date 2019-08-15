@@ -30,13 +30,13 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
   description = "Terraform-managed ElastiCache parameter group for ${var.name}-${var.env}-${data.aws_vpc.vpc.tags["Name"]}"
 
   # Strip the patch version from redis_version var
-  family    = "redis${replace(var.redis_version, "/\\.[\\d]+$/", "")}"
-  
+  family = "redis${replace(var.redis_version, "/\\.[\\d]+$/", "")}"
+
   dynamic "parameter" {
     for_each = var.redis_parameters
     content {
-      name  = redis_parameters.value.name
-      value = redis_parameters.value.value
+      name  = parameter.value.name
+      value = parameter.value.value
     }
   }
 

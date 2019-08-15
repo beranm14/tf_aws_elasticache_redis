@@ -31,8 +31,7 @@ resource "aws_elasticache_parameter_group" "redis_parameter_group" {
 
   # Strip the patch version from redis_version var
   family    = "redis${replace(var.redis_version, "/\\.[\\d]+$/", "")}"
-  parameter = var.redis_parameters
-
+  
   dynamic "parameter" {
     for_each = var.redis_parameters
     content {
